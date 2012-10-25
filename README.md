@@ -1,28 +1,39 @@
-##IMPORTACIÓN DE BASE DE DATOS GEOGRÁFICA A PARTIR DEL CONTENIDO DE GEONAMES
+##Shell Script for importing geonames.org data dumps into a mysql database.
+This repository contains a linux shell script that downloads and imports the geonames.org geographical data dumps into a MySQL database.
 
-Existen tres conjuntos de ficheros diferentes:
+So, there are two operation modes supported in the script.
 
-* .txt: Dumps con la información geográfica descargada de GeoNames.
-* .sql: Scripts mySQL para la creación de la base de datos y para la importación de los dumps anteriores.
-* geonames_importer.sh:  Script principal para crear, eliminar, recrear etc. la base de datos a partir de los dumps.
+###Downloading last geonames.org dumps
+In order to get the latest dumps from geonames.org you can invoke the script in this way.
 
-En principio el script geonames.sh contiene todas las acciones posibles a realizar para recrear la base de datos.
+    geonames_importer.sh ----download-data
 
-##OPCIONES DE EJECUCIÓN
+The result files should be:
 
-1.- Generación de la base de datos. Unicamente genera la estructura de la BD.
+* admin1CodesASCII.txt
+* allCountries.txt
+* alternateNames.txt
+* countryInfo.txt
+* featureCodes_en.txt
+* iso-languagecodes.txt
+* timeZones.txt
 
-    geonames_importer.sh --create-db
+###Creating and dealing with the geographic database
+There are some individual operations that you could use:
 
-2.- Importación de dumps en la base de datos.
+1.- Create a new database struct.
 
-    geonames_importer.sh --import-dumps
+    geonames_importer.sh --create-db <user> <password>
 
-3.- Eliminación de la base de datos. Elimina estructura y datos de la base de datos.
+2.- Import the dumps obtained in the previous operation mode into the database.
+
+    geonames_importer.sh --import-dumps <user> <password>
+
+3.- Dropping the geographic database (you will lose struct and data, so type with care!!!).
  
-    geonames_importer.sh --drop-db
+    geonames_importer.sh --drop-db <user> <password>
  
-4.- Truncado Borrado de datos exclusivamente. Mantiene la estructura de la base de datos.
+4.- Truncates geographic data from the database. This will delete all the data contained in the database but will keep the whole struct.
 
-    geonames_importer.sh --truncate-db
+    geonames_importer.sh --truncate-db <user> <password>
 

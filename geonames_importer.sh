@@ -1,14 +1,6 @@
 #!/bin/bash
 
-# Description and number of arguments used in this script
 expected_args=3
-
-#DOWNLOAD_GEONAMES_DATA_ACTION=  --download-data
-#CREATE_DATABASE_ACTION= 		--create-db
-#IMPORT_DUMPS_ACTION=			--import-dumps
-#DROP_DB_ACTION=					--drop-db
-#TRUNCATE_DB_ACTION=				--truncate-db
-
 
 logo() {
 	echo "================================================================================================"
@@ -40,7 +32,6 @@ if { [ $# == 1 ] && [ "$1" == "--download-data" ]; } then
 	echo "Downloading GeoNames.org data..." 
 	wget http://download.geonames.org/export/dump/allCountries.zip
 	wget http://download.geonames.org/export/dump/alternateNames.zip
-	#wget http://download.geonames.org/export/dump/iso-languagecodes.txt
 	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt
 	wget http://download.geonames.org/export/dump/featureCodes_en.txt
 	wget http://download.geonames.org/export/dump/timeZones.txt
