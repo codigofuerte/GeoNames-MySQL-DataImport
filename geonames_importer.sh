@@ -29,7 +29,7 @@ usage() {
 	echo "    -u <user>     User name to access database server."
 	echo "    -p <password> User password to access database server."
 	echo "    -h <host>     Data Base Server address (default: localhost)."
-	echo "    -P <port>     Data Base Server Port (default: 3306)"
+	echo "    -r <port>     Data Base Server Port (default: 3306)"
 	echo "    -n <dbname>  Data Base Name for the geonames.org data (default: geonames)"
 	echo "================================================================================================"
     exit -1
@@ -76,13 +76,6 @@ do
     esac
 done
 
-#echo "Orden: " $action
-#echo "UserName: " $dbusername
-#echo "Password: " $dbpassword
-#echo "DB Host: " $dbhost
-#echo "DB Port: " $dbport
-#echo "DB Name: " $dbname
-#exit 0
 
 case $action in
     download-data)
@@ -91,34 +84,48 @@ case $action in
     ;;
 esac
 
-while [ $# -gt 1 ]; do
-    case "$1" in
+if [ -z $dbusername ]; then
+    echo "No user name provided for accessing the database. Please write some value in parameter -u..."
+    exit 1
+fi
 
-        --create-db)
-            
-			echo "Creating \"geonames\" database"
-			mysql -u $2 -p$3 < geonames_db_struct.sql
-		;;
+if [ -z $dbpassword ]; then
+    echo "No user password provided for accessing the database. Please write some value in parameter -p..."
+    exit 1
+fi
 
-		"--import-dumps")
-			echo "Importing \"geonames\" data into database"
-			mysql -u $2 -p$3 < geonames_db_struct.sql
-			mysql -u $2 -p$3 < geonames_import_data.sql
-		;;	
+echo "Database parameters being used..."
+echo "Orden: " $action
+echo "UserName: " $dbusername
+echo "Password: " $dbpassword
+echo "DB Host: " $dbhost
+echo "DB Port: " $dbport
+echo "DB Name: " $dbname
 
-		"--drop-db")
-			echo "Dropping \"geonames\" database"
-			mysql -u $2 -p$3 < geonames_drop_database.sql;
-		;;
-
-		"--truncate-db")
-			echo "Truncating \"geonames\" database"
-			mysql -u $2 -p$3 < geonames_trucate_db.sql;
-		;;
-
-	esac
-done
-
+case "$action" in
+    create-db)
+        echo "Creating database $dbname..."
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "DROP DATABASE IF EXISTS $dbname;"
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8;" 
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_db_struct.sql
+    ;;
+        
+    import-dumps)
+        echo "Importing geonames dumps into database $dbname"
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_import_data.sql
+    ;;    
+    
+    drop-db)
+        echo "Dropping $dbname database"
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "DROP DATABASE IF EXISTS $dbname;"
+    ;;
+        
+    truncate-db)
+        echo "Truncating \"geonames\" database"
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_trucate_db.sql
+    ;;	
+esac
 
 if [ $? == 0 ]; then 
 	echo "[OK]"

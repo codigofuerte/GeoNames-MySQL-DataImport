@@ -1,4 +1,3 @@
-USE geonames;
 TRUNCATE TABLE geoname;
 TRUNCATE TABLE alternatename;
 TRUNCATE TABLE countryinfo;

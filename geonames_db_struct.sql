@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS geonames; 
-CREATE DATABASE geonames DEFAULT CHARACTER SET utf8;
-USE geonames;
+-- DROP DATABASE IF EXISTS geonames; 
+-- CREATE DATABASE geonames DEFAULT CHARACTER SET utf8;
+-- USE geonames;
  
  CREATE TABLE geoname (
  geonameid int PRIMARY KEY,
