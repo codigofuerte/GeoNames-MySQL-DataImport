@@ -1,7 +1,9 @@
 ##Shell Script for importing geonames.org data dumps into a mysql database.
-This repository contains a linux shell script that downloads and imports the geonames.org geographical data dumps into a MySQL database.
+The contents of this project are a compendium of different knowledge adquired about GeoNames geographical database.
+Most of this knowledge was obtained from the official GeoNames Forum.
+The result is a linux shell script that allows you to download the GeoNames dumps from the offial site and create a MySQL database structure in which you can import that dumps.
 
-So, there are two operation modes supported in the script.
+The script has two different operation modes.
 
 ###Downloading last geonames.org dumps
 In order to get the latest dumps from geonames.org you can invoke the script in this way.
