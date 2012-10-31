@@ -18,6 +18,8 @@ The result files should be:
 * iso-languagecodes.txt
 * timeZones.txt
 
+Plus "continentCodes.txt". This file is not included as a downlodable file by geonames.org and is provided as part of this git repository.
+
 ###Creating and dealing with the geographic database
 There are some individual operations that you could use. In all of them you have to provide a user name and a password to access your database server.
 Optionally you can specify the host, port number of your MySQL server and a dabatase name in which to insert the data from geonames.org.
