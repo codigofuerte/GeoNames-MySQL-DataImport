@@ -51,11 +51,11 @@
  currency char(3),
  currencyName char(20),
  Phone char(10),
- postalCodeFormat char(20),
- postalCodeRegex char(20),
+ postalCodeFormat varchar(100),
+ postalCodeRegex varchar(255),
  geonameId int,
  languages varchar(200),
- neighbours char(20),
+ neighbours char(100),
  equivalentFipsCode char(10)
  ) CHARACTER SET utf8;
  

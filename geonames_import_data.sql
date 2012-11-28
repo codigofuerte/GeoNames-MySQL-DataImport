@@ -4,5 +4,5 @@ LOAD DATA LOCAL INFILE 'iso-languagecodes.txt' INTO TABLE iso_languagecodes CHAR
 LOAD DATA LOCAL INFILE 'admin1CodesASCII.txt' INTO TABLE admin1CodesAscii CHARACTER SET 'UTF8' (code, name, nameAscii, geonameid);
 LOAD DATA LOCAL INFILE 'featureCodes_en.txt' INTO TABLE featureCodes CHARACTER SET 'UTF8' (code, name, description);
 LOAD DATA LOCAL INFILE 'timeZones.txt' INTO TABLE timeZones CHARACTER SET 'UTF8' IGNORE 1 LINES  (timeZoneId, GMT_offset, DST_offset);
-LOAD DATA LOCAL INFILE 'countryInfo.txt' INTO TABLE countryinfo CHARACTER SET 'UTF8' IGNORE 1 LINES  (iso_alpha2,iso_alpha3,iso_numeric,fips_code,name,capital,areaInSqKm,population,continent,languages,currency,geonameId);
+LOAD DATA LOCAL INFILE 'countryInfo.txt' INTO TABLE countryinfo CHARACTER SET 'UTF8' IGNORE 51 LINES (iso_alpha2,iso_alpha3,iso_numeric,fips_code,name,capital,areaInSqKm,population,continent,tld,currency,currencyName,phone,postalCodeFormat,postalCodeRegex,languages,geonameid,neighbours,equivalentFipsCode);
 LOAD DATA LOCAL INFILE 'continentCodes.txt' INTO TABLE continentCodes CHARACTER SET 'UTF8' FIELDS TERMINATED BY ',' (code, name, geonameId);
