@@ -47,9 +47,7 @@
             Most of this knowledge was obtained from the <a href="http://forum.geonames.org/gforum/posts/list/732.page" target="_blank">GeoNames Forum - Importing *all* geonames tables to MySQL</a>.
             The result is a linux shell script that allows you to <b>download the GeoNames dumps</b> from the official site and <b>create a MySQL database structure in which you can import that dumps</b>.
         </p>
-        <p>
-        	The script has two different operation modes.
-        </p>
+        <p>The script has two different operation modes.</p>
 
         <h2>Downloading last geonames.org dumps</h2>
         
@@ -71,6 +69,31 @@
         <p>Plus "continentCodes.txt". This file is not included as a downlodable file by geonames.org and is provided as part of this git repository.</p>
         
         <h2>Creating and dealing with the geographic database</h2>
+        <p>
+            There are some individual operations that you could use. In all of them you have to provide a user name and a password to access your database server.
+            Optionally you can specify the host, port number of your MySQL server and a dabatase name in which to insert the data from geonames.org.
+            If you don't provide this optional values the parameters will take the following deafult values:
+        </p>
+        
+        <ul>
+            <li>Data Base Host => localhost</li>
+            <li>Data Base Port => 3306</li>
+            <li>Data Base Name => geonames</li>
+        </ul>
+        
+        <h3>Create a new database struct</h3>
+        <pre><code>geonames_importer.sh -a create-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
+        
+        <h3>Import the dumps obtained in the previous operation mode into the database</h3>
+        <pre><code>geonames_importer.sh -a import-dumps -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
+        
+        <h3>Dropping the geographic database ()</h3>
+        <pre><code>geonames_importer.sh -a drop-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
+        <p><strong>CAUTION</strong> You will lose struct and data, so <strong>type carefully</strong></p>
+        
+        <h3>Truncates geographic data from the database</h3>
+        <pre><code>geonames_importer.sh -a truncate-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
+        <p>This will delete all the data contained in the database but will keep the whole struct.</p>
 <!--
         <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
