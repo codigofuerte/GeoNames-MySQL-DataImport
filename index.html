@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Geonames MySQL Data Import by CodigoFuerte</title>
+    <title>Geonames MySQL Data Import by CodigoFuerte - Home Page</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -27,85 +27,60 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1 class="header">Geonames MySQL Data Importer</h1>
-        <p class="header">Shell Script to download and import geonames.org dumps into a mysql database.</p>
+        <div align="center"><h1 class="header">Geonames MySQL Data Importer</h1></div>
+        <div align="center"><p class="header">A shell Script to download and import geonames.org dumps into a mysql database.</p></div>
+        
+        <div align="center">
+        <ul>
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="downloading_data.html">Downloading Data</a></li>
+            <li><a href="importing_data.html">Importing Data</a> </li>
+        </ul>
+
+        <hr/>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport/zipball/master">Download ZIP</a></li>
           <li class="download"><a class="buttons" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport/tarball/master">Download TAR</a></li>
-          <li><a class="buttons github" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport">View On GitHub</a></li>
+          <li><a class="buttons github" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport" target="_blank">View On GitHub</a></li>
         </ul>
-
-        <p class="header">This project is maintained by <a class="header name" href="https://github.com/codigofuerte">CodigoFuerte</a></p>
-
-
+        </div>
+        
+        <p class="header">
+            <div align="center">
+                This project is maintained by <a class="header name" href="https://github.com/codigofuerte">CodigoFuerte</a>
+            </div>
+        </p>
       </header>
+      
       <section>
-        <h2>Introduction.</h2>
-	    <p>
+        <h1>Introduction.</h1>
+        <div align="center"><img src="images/geonames.png"/></div>
+	       <p>
             The contents of this project are a compendium of different knowledge adquired about <a href="http://www.geonames.org" target="_blank">GeoNames</a> geographical database.
             Most of this knowledge was obtained from the <a href="http://forum.geonames.org/gforum/posts/list/732.page" target="_blank">GeoNames Forum - Importing *all* geonames tables to MySQL</a>.
-            The result is a linux shell script that allows you to <b>download the GeoNames dumps</b> from the official site and <b>create a MySQL database structure in which you can import that dumps</b>.
         </p>
-        <p>The script has two different operation modes.</p>
-
-        <h2>Downloading last geonames.org dumps</h2>
-        
-        <p>In order to get the latest dumps from geonames.org you can invoke the script in this way.</p>
-        
-<pre><code>geonames_importer.sh -a download-data</code></pre>
-        
-        The result files should be:        
-        <ul>
-            <li>admin1CodesASCII.txt</li>
-            <li>allCountries.txt</li>
-            <li>alternateNames.txt</li>
-            <li>countryInfo.txt</li>
-            <li>featureCodes_en.txt</li>
-            <li>iso-languagecodes.txt</li>
-            <li>timeZones.txt</li>
-        </ul>
-        
-        <p>Plus "continentCodes.txt". This file is not included as a downlodable file by geonames.org and is provided as part of this git repository.</p>
-        
-        <h2>Creating and dealing with the geographic database</h2>
         <p>
-            There are some individual operations that you could use. In all of them you have to provide a user name and a 
-            password to access your database server.
-    	</p>
-        <p>
-            Optionally you can specify the host, port number of your MySQL server and a dabatase name in which to insert the data from geonames.org.
-            If you don't provide this optional values the parameters will take the following deafult values:
+            The result is a linux shell script that allows you to <strong>download the GeoNames data dumps</strong> from the official site and <strong>create a MySQL database structure in which you can import that dumps</strong>.
         </p>
-        
-        <ul>
-            <li>Data Base Host => localhost</li>
-            <li>Data Base Port => 3306</li>
-            <li>Data Base Name => geonames</li>
-        </ul>
-        
-        <h3>Create a new database struct</h3>
-        <pre><code>geonames_importer.sh -a create-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
-        
-        <h3>Import the dumps obtained in the previous operation mode into the database</h3>
-        <pre><code>geonames_importer.sh -a import-dumps -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
-        
-        <h3>Dropping the geographic database ()</h3>
-        <pre><code>geonames_importer.sh -a drop-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
-        <p><strong>CAUTION</strong> You will lose struct and data, so <strong>type carefully</strong></p>
-        
-        <h3>Truncates geographic data from the database</h3>
-        <pre><code>geonames_importer.sh -a truncate-db -u <user> -p <password> [-h <host>] [-P <port>] [-n <dbname>]</code></pre>
-        <p>This will delete all the data contained in the database but will keep the whole struct.</p>
-        
-<h2>Support or Contact</h2>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-      <footer>
+        <p>
+            The script has two different operation modes
+            <ul>
+                <li><a href="downloading_data.html">Downloading the Geonames data dumps</a></li>
+                <li><a href="importing_data.html">Importing the data into a MySQL database</a></li>
+            </ul>
+        </p>
+        <!--
+        <h2>Support or Contact</h2>
+        <p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+        -->
+    </section>
+    
+    <footer>
         <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
-      </footer>
-    </div>        
+    </footer>
+</div>
+        
 <!--
         <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
 
