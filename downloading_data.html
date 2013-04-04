@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Geonames MySQL Data Import by CodigoFuerte - Downloading latest Geonames Data </title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-20696990-4', 'github.com');
+  ga('send', 'pageview');
+</script>
+
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div align="center"><h1 class="header">Geonames MySQL Data Importer</h1></div>
+        <div align="center"><p class="header">A shell Script to download and import geonames.org dumps into a mysql database.</p></div>
+        
+        <div align="center">
+        <ul>
+            <li><a href="index.html">Introduction</a></li>
+            <li><a href="downloading_data.html">Downloading Data</a></li>
+            <li><a href="importing_data.html">Importing Data</a> </li>
+        </ul>
+
+        <hr/>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/codigofuerte/GeoNames-MySQL-DataImport" target="_blank">View On GitHub</a></li>
+        </ul>
+        </div>
+        
+        <p class="header">
+            <div align="center">
+                This project is maintained by <a class="header name" href="https://github.com/codigofuerte">CodigoFuerte</a>
+            </div>
+        </p>
+      </header>
+      
+    <section>
+        <h1>Downloading last geonames.org dumps</h1>
+        <p>In order to get the latest dumps from geonames.org you can invoke the script in this way.</p>
+        
+        <pre><code>geonames_importer.sh -a download-data</code></pre>
+        
+        The result files should be:        
+        <ul>
+            <li>admin1CodesASCII.txt</li>
+            <li>allCountries.txt</li>
+            <li>alternateNames.txt</li>
+            <li>countryInfo.txt</li>
+            <li>featureCodes_en.txt</li>
+            <li>iso-languagecodes.txt</li>
+            <li>timeZones.txt</li>
+        </ul>
+        
+        <p>In addition to these files there is another one called <strong>continentCodes.txt</strong>. This file is not included as a downlodable file by geonames.org and is provided as part of this git repository.</p>
+    </section>
+    
+    <footer>
+        <p><small>Hosted on <a href="https://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+    </footer>
+    
+    </div>        
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+  </body>
+</html>
