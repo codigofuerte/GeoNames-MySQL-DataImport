@@ -68,14 +68,16 @@ CREATE TABLE iso_languagecodes(
 ) CHARACTER SET utf8;
 
 
-CREATE TABLE admin1Codes (
+CREATE TABLE admin1CodesAscii (
     code CHAR(6),
-    name TEXT
+    name TEXT,
+    nameAscii TEXT,
+    geonameid int
 ) CHARACTER SET utf8;
 
 
-CREATE TABLE admin1CodesAscii (
-    code CHAR(6),
+CREATE TABLE admin2Codes (
+    code CHAR(15),
     name TEXT,
     nameAscii TEXT,
     geonameid int
