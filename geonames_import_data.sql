@@ -11,6 +11,7 @@ CHARACTER SET 'UTF8'
 LOAD DATA LOCAL INFILE 'iso-languagecodes.txt'
 INTO TABLE iso_languagecodes
 CHARACTER SET 'UTF8'
+IGNORE 1 LINES
 (iso_639_3, iso_639_2, iso_639_1, language_name);
 
 LOAD DATA LOCAL INFILE 'admin1CodesASCII.txt'
