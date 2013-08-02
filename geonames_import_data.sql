@@ -24,6 +24,11 @@ INTO TABLE admin2Codes
 CHARACTER SET 'UTF8'
 (code, name, nameAscii, geonameid);
 
+LOAD DATA LOCAL INFILE 'hierarchy.txt'
+INTO TABLE hierarchy
+CHARACTER SET 'UTF8'
+(parentId, childId, type);
+
 LOAD DATA LOCAL INFILE 'featureCodes_en.txt'
 INTO TABLE featureCodes
 CHARACTER SET 'UTF8'
