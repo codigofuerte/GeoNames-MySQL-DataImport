@@ -19,6 +19,11 @@ INTO TABLE admin1CodesAscii
 CHARACTER SET 'UTF8'
 (code, name, nameAscii, geonameid);
 
+LOAD DATA LOCAL INFILE 'admin2Codes.txt'
+INTO TABLE admin2Codes
+CHARACTER SET 'UTF8'
+(code, name, nameAscii, geonameid);
+
 LOAD DATA LOCAL INFILE 'featureCodes_en.txt'
 INTO TABLE featureCodes
 CHARACTER SET 'UTF8'
