@@ -84,6 +84,13 @@ CREATE TABLE admin2Codes (
 ) CHARACTER SET utf8;
 
 
+CREATE TABLE hierarchy (
+    parentId int,
+    childId int,
+    type VARCHAR(50)
+) CHARACTER SET utf8;
+
+
 CREATE TABLE featureCodes (
     code CHAR(7),
     name VARCHAR(200),
