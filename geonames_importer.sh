@@ -37,20 +37,20 @@ usage() {
 
 download_geonames_data() {
 	echo "Downloading GeoNames.org data..." 
-	wget http://download.geonames.org/export/dump/allCountries.zip
-	wget http://download.geonames.org/export/dump/alternateNames.zip
-	wget http://download.geonames.org/export/dump/hierarchy.zip
-	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt
-	wget http://download.geonames.org/export/dump/admin2Codes.txt
-	wget http://download.geonames.org/export/dump/featureCodes_en.txt
-	wget http://download.geonames.org/export/dump/timeZones.txt
-	wget http://download.geonames.org/export/dump/countryInfo.txt
-	unzip allCountries.zip
-	unzip alternateNames.zip
-	unzip hierarchy.zip
-	rm allCountries.zip
-	rm alternateNames.zip
-	rm hierarchy.zip
+	wget http://download.geonames.org/export/dump/allCountries.zip -o data/allCountries.zip
+	wget http://download.geonames.org/export/dump/alternateNames.zip -o data/alternateNames.zip
+	wget http://download.geonames.org/export/dump/hierarchy.zip -o data/hierarchy.zip
+	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt -o data/admin1CodesASCII.txt
+	wget http://download.geonames.org/export/dump/admin2Codes.txt -o data/admin2Codes.txt
+	wget http://download.geonames.org/export/dump/featureCodes_en.txt -o data/featureCodes_en.txt
+	wget http://download.geonames.org/export/dump/timeZones.txt -o data/timeZones.txt
+	wget http://download.geonames.org/export/dump/countryInfo.txt -o data/countryInfo.txt
+	unzip data/allCountries.zip
+	unzip data/alternateNames.zip
+	unzip data/hierarchy.zip
+	rm data/allCountries.zip
+	rm data/alternateNames.zip
+	rm data/hierarchy.zip
 }
 
 if [ $# -lt 1 ]; then
