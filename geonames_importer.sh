@@ -127,7 +127,7 @@ case "$action" in
         
     truncate-db)
         echo "Truncating \"geonames\" database"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_trucate_db.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_truncate_db.sql
     ;;	
 esac
 
