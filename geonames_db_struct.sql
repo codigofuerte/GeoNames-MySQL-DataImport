@@ -21,7 +21,8 @@ CREATE TABLE geoname (
     elevation int,
     gtopo30 int,
     timezone varchar(40),
-    moddate date
+    moddate date,
+    PRIMARY KEY (geonameid)
 ) CHARACTER SET utf8;
 
 
@@ -33,7 +34,8 @@ CREATE TABLE alternatename (
     isPreferredName BOOLEAN,
     isShortName BOOLEAN,
     isColloquial BOOLEAN,
-    isHistoric BOOLEAN
+    isHistoric BOOLEAN,
+    PRIMARY KEY (alternatenameId)
 ) CHARACTER SET utf8;
 
 
@@ -56,7 +58,8 @@ CREATE TABLE countryinfo (
     geonameId int,
     languages varchar(200),
     neighbours char(100),
-    equivalentFipsCode char(10)
+    equivalentFipsCode char(10),
+    PRIMARY KEY (iso_alpha2)
 ) CHARACTER SET utf8;
 
 
@@ -64,7 +67,8 @@ CREATE TABLE iso_languagecodes(
     iso_639_3 CHAR(4),
     iso_639_2 VARCHAR(50),
     iso_639_1 VARCHAR(50),
-    language_name VARCHAR(200)
+    language_name VARCHAR(200),
+    PRIMARY KEY (iso_639_3)
 ) CHARACTER SET utf8;
 
 
@@ -72,7 +76,8 @@ CREATE TABLE admin1CodesAscii (
     code CHAR(6),
     name TEXT,
     nameAscii TEXT,
-    geonameid int
+    geonameid int,
+    PRIMARY KEY (code, geonameid)
 ) CHARACTER SET utf8;
 
 
@@ -80,33 +85,39 @@ CREATE TABLE admin2Codes (
     code CHAR(15),
     name TEXT,
     nameAscii TEXT,
-    geonameid int
+    geonameid int,
+    PRIMARY KEY (code, geonameid)
 ) CHARACTER SET utf8;
 
 
 CREATE TABLE hierarchy (
     parentId int,
     childId int,
-    type VARCHAR(50)
+    type VARCHAR(50),
+    PRIMARY KEY (hierarchyId)
 ) CHARACTER SET utf8;
 
 
 CREATE TABLE featureCodes (
     code CHAR(7),
     name VARCHAR(200),
-    description TEXT
+    description TEXT,
+    PRIMARY KEY (code)
 ) CHARACTER SET utf8;
 
 
 CREATE TABLE timeZones (
+    id int NOT NULL AUTO_INCREMENT,
     timeZoneId VARCHAR(200),
     GMT_offset DECIMAL(3,1),
-    DST_offset DECIMAL(3,1)
+    DST_offset DECIMAL(3,1),
+    PRIMARY KEY (id)
 ) CHARACTER SET utf8;
 
 
 CREATE TABLE continentCodes (
     code CHAR(2),
     name VARCHAR(20),
-    geonameid INT
+    geonameid INT,
+    PRIMARY KEY (code)
 ) CHARACTER SET utf8;
