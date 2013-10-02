@@ -129,7 +129,7 @@ case "$action" in
         
     truncate-db)
         echo "Truncating \"geonames\" database"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $DIR/geonames_truncate_db.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $DIR/src/geonames_truncate_db.sql
     ;;	
 esac
 
