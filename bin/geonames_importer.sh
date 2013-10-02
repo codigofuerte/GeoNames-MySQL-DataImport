@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DIR=$( cd "$( dirname "$0" )" && cd .. && pwd )
+
 # Default values for database variables.
 dbhost="localhost"
 dbport=3306
@@ -37,20 +39,20 @@ usage() {
 
 download_geonames_data() {
 	echo "Downloading GeoNames.org data..." 
-	wget http://download.geonames.org/export/dump/allCountries.zip
-	wget http://download.geonames.org/export/dump/alternateNames.zip
-	wget http://download.geonames.org/export/dump/hierarchy.zip
-	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt
-	wget http://download.geonames.org/export/dump/admin2Codes.txt
-	wget http://download.geonames.org/export/dump/featureCodes_en.txt
-	wget http://download.geonames.org/export/dump/timeZones.txt
-	wget http://download.geonames.org/export/dump/countryInfo.txt
-	unzip allCountries.zip
-	unzip alternateNames.zip
-	unzip hierarchy.zip
-	rm allCountries.zip
-	rm alternateNames.zip
-	rm hierarchy.zip
+	wget http://download.geonames.org/export/dump/allCountries.zip -o $DIR/data/allCountries.zip
+	wget http://download.geonames.org/export/dump/alternateNames.zip -o $DIR/data/alternateNames.zip
+	wget http://download.geonames.org/export/dump/hierarchy.zip -o $DIR/data/hierarchy.zip
+	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt -o $DIR/data/admin1CodesASCII.txt
+	wget http://download.geonames.org/export/dump/admin2Codes.txt -o $DIR/data/admin2Codes.txt
+	wget http://download.geonames.org/export/dump/featureCodes_en.txt -o $DIR/data/featureCodes_en.txt
+	wget http://download.geonames.org/export/dump/timeZones.txt -o $DIR/data/timeZones.txt
+	wget http://download.geonames.org/export/dump/countryInfo.txt -o $DIR/data/countryInfo.txt
+	unzip data/allCountries.zip
+	unzip data/alternateNames.zip
+	unzip data/hierarchy.zip
+	rm data/allCountries.zip
+	rm data/alternateNames.zip
+	rm data/hierarchy.zip
 }
 
 if [ $# -lt 1 ]; then
@@ -112,12 +114,12 @@ case "$action" in
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "DROP DATABASE IF EXISTS $dbname;"
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8;" 
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_db_struct.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $DIR/src/geonames_db_struct.sql
     ;;
         
     import-dumps)
         echo "Importing geonames dumps into database $dbname"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < geonames_import_data.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $DIR/src/geonames_import_data.sql
     ;;    
     
     drop-db)
@@ -127,7 +129,7 @@ case "$action" in
         
     truncate-db)
         echo "Truncating \"geonames\" database"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_truncate_db.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $DIR/src/geonames_truncate_db.sql
     ;;	
 esac
 

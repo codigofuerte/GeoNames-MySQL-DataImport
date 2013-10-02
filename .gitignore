@@ -1,10 +1,13 @@
-admin1CodesASCII.txt
-admin2Codes.txt
-allCountries.txt
-alternateNames.txt
-countryInfo.txt
-featureCodes_en.txt
-hierarchy.txt
-iso-languagecodes.txt
-no-country
-timeZones.txt
+data/admin1CodesASCII.txt
+data/admin2Codes.txt
+data/allCountries.txt
+data/alternateNames.txt
+data/countryInfo.txt
+data/featureCodes_en.txt
+data/hierarchy.txt
+data/iso-languagecodes.txt
+data/timeZones.txt
+data/no-country
+
+# no ignore, absent on geonames.org
+# data/continentCodes.txt
