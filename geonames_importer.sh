@@ -129,7 +129,16 @@ case "$action" in
     truncate-db)
         echo "Truncating \"geonames\" database"
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_truncate_db.sql
-    ;;	
+    ;;
+	
+	create-indexes)
+	     echo "Creating indexes. This can take a long time."
+	     while read line
+	     do
+	       echo "$line";
+	       mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -e "$line" $dbname
+	     done < $dir/geonames_add_indexes.sql
+	 ;;
 esac
 
 if [ $? == 0 ]; then 
