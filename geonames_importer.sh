@@ -46,12 +46,15 @@ download_geonames_data() {
 	wget http://download.geonames.org/export/dump/featureCodes_en.txt
 	wget http://download.geonames.org/export/dump/timeZones.txt
 	wget http://download.geonames.org/export/dump/countryInfo.txt
+	wget -O allCountries_zip.zip http://download.geonames.org/export/zip/allCountries.zip
 	unzip allCountries.zip
 	unzip alternateNames.zip
 	unzip hierarchy.zip
+	unzip allCountries_zip.zip -d ./zip/
 	rm allCountries.zip
 	rm alternateNames.zip
 	rm hierarchy.zip
+	rm allCountries_zip.zip
 }
 
 if [ $# -lt 1 ]; then
@@ -130,15 +133,6 @@ case "$action" in
         echo "Truncating \"geonames\" database"
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_truncate_db.sql
     ;;
-	
-	create-indexes)
-	     echo "Creating indexes. This can take a long time."
-	     while read line
-	     do
-	       echo "$line";
-	       mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -e "$line" $dbname
-	     done < $dir/geonames_add_indexes.sql
-	 ;;
 esac
 
 if [ $? == 0 ]; then 
