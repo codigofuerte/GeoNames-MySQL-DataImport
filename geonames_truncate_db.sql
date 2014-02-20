@@ -8,3 +8,4 @@ TRUNCATE TABLE hierarchy;
 TRUNCATE TABLE featureCodes;
 TRUNCATE TABLE timeZones;
 TRUNCATE TABLE continentCodes;
+TRUNCATE TABLE postalCodes;

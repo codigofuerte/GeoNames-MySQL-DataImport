@@ -4,6 +4,7 @@
 dbhost="localhost"
 dbport=3306
 dbname="geonames"
+dir=$( cd "$( dirname "$0" )" && pwd )
 
 logo() {
 	echo "================================================================================================"
@@ -45,12 +46,15 @@ download_geonames_data() {
 	wget http://download.geonames.org/export/dump/featureCodes_en.txt
 	wget http://download.geonames.org/export/dump/timeZones.txt
 	wget http://download.geonames.org/export/dump/countryInfo.txt
+	wget -O allCountries_zip.zip http://download.geonames.org/export/zip/allCountries.zip
 	unzip allCountries.zip
 	unzip alternateNames.zip
 	unzip hierarchy.zip
+	unzip allCountries_zip.zip -d ./zip/
 	rm allCountries.zip
 	rm alternateNames.zip
 	rm hierarchy.zip
+	rm allCountries_zip.zip
 }
 
 if [ $# -lt 1 ]; then
@@ -112,12 +116,12 @@ case "$action" in
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "DROP DATABASE IF EXISTS $dbname;"
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8;" 
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_db_struct.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
     ;;
         
     import-dumps)
         echo "Importing geonames dumps into database $dbname"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < geonames_import_data.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $dir/geonames_import_data.sql
     ;;    
     
     drop-db)
@@ -127,8 +131,8 @@ case "$action" in
         
     truncate-db)
         echo "Truncating \"geonames\" database"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < geonames_truncate_db.sql
-    ;;	
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_truncate_db.sql
+    ;;
 esac
 
 if [ $? == 0 ]; then 
