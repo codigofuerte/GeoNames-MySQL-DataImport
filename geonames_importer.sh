@@ -21,7 +21,7 @@ usage() {
 	echo " This is to operate with the geographic database"
     echo " Where <action> can be one of this: "
 	echo "    download-data Downloads the last packages of data available in GeoNames."
-    echo "    create-db Creates the mysl database structure with no data."
+    echo "    create-db Creates the mysql database structure with no data."
     echo "    import-dumps Imports geonames data into db. A database is previously needed for this to work."
 	echo "    drop-db Removes the db completely."
     echo "    truncate-db Removes geonames data from db."
