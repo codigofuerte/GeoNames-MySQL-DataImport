@@ -74,17 +74,17 @@
         </ul>
         
         <h3>Create a new database struct</h3>
-        <pre><code>geonames_importer.sh -a create-db -u <user> -p <password> [-h <host>] [-r <port>] [-n <dbname>]</code></pre>
+        <pre><code>geonames_importer.sh -a create-db -u user -p password [-h host] [-r port] [-n dbname]</code></pre>
         
         <h3>Import the dumps obtained in the previous operation mode into the database</h3>
-        <pre><code>geonames_importer.sh -a import-dumps -u <user> -p <password> [-h <host>] [-r <port>] [-n <dbname>]</code></pre>
+        <pre><code>geonames_importer.sh -a import-dumps -u user -p password [-h host-address] [-r port] [-n dbname]</code></pre>
         
         <h3>Dropping the geographic database ()</h3>
-        <pre><code>geonames_importer.sh -a drop-db -u <user> -p <password> [-h <host>] [-r <port>] [-n <dbname>]</code></pre>
+        <pre><code>geonames_importer.sh -a drop-db -u user -p password [-h host] [-r port] [-n dbname]</code></pre>
         <p><strong>CAUTION</strong> You will lose struct and data, so <strong>type carefully</strong></p>
         
         <h3>Truncates geographic data from the database</h3>
-        <pre><code>geonames_importer.sh -a truncate-db -u <user> -p <password> [-h <host>] [-r <port>] [-n <dbname>]</code></pre>
+        <pre><code>geonames_importer.sh -a truncate-db -u user -p password [-h host] [-r port] [-n dbname]</code></pre>
         <p>This will delete all the data contained in the database but will keep the whole struct.</p>
     </section>
     
