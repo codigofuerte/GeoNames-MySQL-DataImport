@@ -4,7 +4,7 @@
 
 -- Create syntax for TABLE 'admin1CodesAscii'
 CREATE TABLE `admin1CodesAscii` (
-  `code` char(6) DEFAULT NULL,
+  `code` char(15) DEFAULT NULL,
   `name` text,
   `nameAscii` text,
   `geonameid` int(11) DEFAULT NULL,
