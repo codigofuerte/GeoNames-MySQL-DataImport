@@ -119,6 +119,12 @@ case "$action" in
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
     ;;
         
+    create-tables)
+        echo "Creating tables for database $dbname..."
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
+    ;;
+    
     import-dumps)
         echo "Importing geonames dumps into database $dbname"
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $dir/geonames_import_data.sql
