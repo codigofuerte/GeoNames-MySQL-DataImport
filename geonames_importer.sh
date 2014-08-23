@@ -39,15 +39,15 @@ usage() {
 
 download_geonames_data() {
 	echo "Downloading GeoNames.org data..." 
-	wget http://download.geonames.org/export/dump/allCountries.zip
-	wget http://download.geonames.org/export/dump/alternateNames.zip
-	wget http://download.geonames.org/export/dump/hierarchy.zip
-	wget http://download.geonames.org/export/dump/admin1CodesASCII.txt
-	wget http://download.geonames.org/export/dump/admin2Codes.txt
-	wget http://download.geonames.org/export/dump/featureCodes_en.txt
-	wget http://download.geonames.org/export/dump/timeZones.txt
-	wget http://download.geonames.org/export/dump/countryInfo.txt
-	wget -O allCountries_zip.zip http://download.geonames.org/export/zip/allCountries.zip
+	wget -c http://download.geonames.org/export/dump/allCountries.zip
+	wget -c http://download.geonames.org/export/dump/alternateNames.zip
+	wget -c http://download.geonames.org/export/dump/hierarchy.zip
+	wget -c http://download.geonames.org/export/dump/admin1CodesASCII.txt
+	wget -c http://download.geonames.org/export/dump/admin2Codes.txt
+	wget -c http://download.geonames.org/export/dump/featureCodes_en.txt
+	wget -c http://download.geonames.org/export/dump/timeZones.txt
+	wget -c http://download.geonames.org/export/dump/countryInfo.txt
+	wget -c -O allCountries_zip.zip http://download.geonames.org/export/zip/allCountries.zip
 	unzip allCountries.zip
 	unzip alternateNames.zip
 	unzip hierarchy.zip
