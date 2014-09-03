@@ -39,15 +39,14 @@ usage() {
 
 download_geonames_data() {
 	echo "Downloading GeoNames.org data..." 
-	wget -c http://download.geonames.org/export/dump/allCountries.zip
-	wget -c http://download.geonames.org/export/dump/alternateNames.zip
-	wget -c http://download.geonames.org/export/dump/hierarchy.zip
-	wget -c http://download.geonames.org/export/dump/admin1CodesASCII.txt
-	wget -c http://download.geonames.org/export/dump/admin2Codes.txt
-	wget -c http://download.geonames.org/export/dump/featureCodes_en.txt
-	wget -c http://download.geonames.org/export/dump/timeZones.txt
-	wget -c http://download.geonames.org/export/dump/countryInfo.txt
-	wget -c -O allCountries_zip.zip http://download.geonames.org/export/zip/allCountries.zip
+    dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
+    zip_codes="allCountries.zip"
+    for dump in $dumps; do
+        wget -c http://download.geonames.org/export/dump/$dump
+    done
+    for zip in $zip_codes; do
+        wget -c -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
+    done
 	unzip allCountries.zip
 	unzip alternateNames.zip
 	unzip hierarchy.zip
