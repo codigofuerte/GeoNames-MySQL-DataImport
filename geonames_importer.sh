@@ -47,14 +47,10 @@ download_geonames_data() {
     for zip in $zip_codes; do
         wget -c -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
     done
-	unzip allCountries.zip
-	unzip alternateNames.zip
-	unzip hierarchy.zip
-	unzip allCountries_zip.zip -d ./zip/
-	rm allCountries.zip
-	rm alternateNames.zip
-	rm hierarchy.zip
-	rm allCountries_zip.zip
+    unzip "*_zip.zip" -d ./zip
+    rm *_zip.zip
+    unzip "*.zip"
+    rm *.zip
 }
 
 if [ $# -lt 1 ]; then
