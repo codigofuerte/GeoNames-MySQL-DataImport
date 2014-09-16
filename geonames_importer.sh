@@ -4,7 +4,9 @@
 dbhost="localhost"
 dbport=3306
 dbname="geonames"
-dir=$( cd "$( dirname "$0" )" && pwd )
+#dir=$( cd "$( dirname "$0" )" && pwd )
+
+download_folder="`pwd`/download"
 
 logo() {
 	echo "================================================================================================"
@@ -14,7 +16,7 @@ logo() {
 
 usage() {
 	logo
-	echo "Usage 1: " $0 "--download-data"
+	echo "Usage 1: " $0 "--download-data [folder]"
 	echo "In this mode the current GeoNames.org's dumps are downloaded to the local machine."
 	echo
 	echo "Usage 2: " $0 "-a <action> -u <user> -p <password> -h <host> -r <port> -n <dbname>"
@@ -39,13 +41,14 @@ usage() {
 
 download_geonames_data() {
 	echo "Downloading GeoNames.org data..." 
+    download_folder="$1"
     dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
     zip_codes="allCountries.zip"
     for dump in $dumps; do
-        wget -c http://download.geonames.org/export/dump/$dump
+        wget -c -P "$download_folder" http://download.geonames.org/export/dump/$dump
     done
     for zip in $zip_codes; do
-        wget -c -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
+        wget -c -P "$download_folder" -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
     done
     unzip "*_zip.zip" -d ./zip
     rm *_zip.zip
@@ -61,9 +64,16 @@ fi
 logo
 
 # Deals operation mode 1 (Download data bundles from geonames.org)
-if { [ $# == 1 ] && [ "$1" == "--download-data" ]; } then
-    download_geonames_data
-	exit 0
+if { [ "$1" == "--download-data" ]; } then
+	if { [ "$2" != "" ]; } then
+		if [ ! -d "$2" ]; then
+			echo "Folder '$2' doesn't exists. Run mkdir..."
+			mkdir "$2"
+		fi
+		download_folder="$2"
+	fi
+	echo "download_folder=$download_folder"
+	download_geonames_data "$download_folder"
 fi
 
 # Deals with operation mode 2 (Database issues...)
