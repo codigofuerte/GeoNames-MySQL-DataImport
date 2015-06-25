@@ -10,3 +10,5 @@ no-country
 timeZones.txt
 /geonames_db_importer.sublime-project
 /geonames_db_importer.sublime-workspace
+.DS_Store
+.idea/
