@@ -4,7 +4,7 @@
 dbhost="localhost"
 dbport=3306
 dbname="geonames"
-#dir=$( cd "$( dirname "$0" )" && pwd )
+dir=$( cd "$( dirname "$0" )" && pwd )
 
 download_folder="`pwd`/download"
 
