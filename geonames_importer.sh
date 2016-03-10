@@ -4,7 +4,7 @@
 dbhost="localhost"
 dbport=3306
 dbname="geonames"
-#dir=$( cd "$( dirname "$0" )" && pwd )
+dir=$( cd "$( dirname "$0" )" && pwd )
 
 download_folder="`pwd`/download"
 
@@ -74,7 +74,7 @@ if { [ "$1" == "--download-data" ]; } then
 	fi
 	echo "download_folder=$download_folder"
 	download_geonames_data "$download_folder"
-	exit 0;
+	exit 0
 fi
 
 # Deals with operation mode 2 (Database issues...)
