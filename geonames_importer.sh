@@ -56,6 +56,7 @@ download_geonames_data() {
     unzip "*.zip"
     rm *.zip
     )
+    cp continentCodes.txt $download_folder
 }
 
 if [ $# -lt 1 ]; then
@@ -135,7 +136,8 @@ case "$action" in
     ;;
     
     import-dumps)
-        echo "Importing geonames dumps into database $dbname"
+        echo "Importing geonames dumps from $download_folder into database $dbname"
+	cd $download_folder
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $dir/geonames_import_data.sql
     ;;    
     
