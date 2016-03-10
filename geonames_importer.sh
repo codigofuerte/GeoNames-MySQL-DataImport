@@ -49,14 +49,18 @@ download_geonames_data() {
     for dump in $dumps; do
         wget -c http://download.geonames.org/export/dump/$dump
     done
+    (
+    mkdir -p ./zipcodes
+    cd ./zipcodes
     for zip in $zip_codes; do
-        wget -c -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
+	    wget -c -P ./zipcodes http://download.geonames.org/export/zipcodes/$zip
     done
-    unzip "*_zip.zip" -d ./zip
-    unzip "*.zip"
-    rm *.zip
+    unzip -o "*.zip"
     )
-    cp continentCodes.txt $download_folder
+    unzip -o "*.zip"
+    
+    cp $(dirname $0)/continentCodes.txt ./
+    )
 }
 
 if [ $# -lt 1 ]; then
@@ -69,10 +73,7 @@ logo
 # Deals operation mode 1 (Download data bundles from geonames.org)
 if { [ "$1" == "--download-data" ]; } then
 	if { [ "$2" != "" ]; } then
-		if [ ! -d "$2" ]; then
-			echo "Folder '$2' doesn't exists. Run mkdir..."
-			mkdir "$2"
-		fi
+		mkdir -p "$2"
 		download_folder="$2"
 	fi
 	echo "download_folder=$download_folder"
@@ -138,7 +139,7 @@ case "$action" in
     import-dumps)
         echo "Importing geonames dumps from $download_folder into database $dbname"
 	cd $download_folder
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $dir/geonames_import_data.sql
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 --skip-column-names $dbname < $dir/geonames_import_data.sql
     ;;    
     
     drop-db)
