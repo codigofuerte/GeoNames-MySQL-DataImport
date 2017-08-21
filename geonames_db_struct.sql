@@ -1,7 +1,3 @@
--- DROP DATABASE IF EXISTS geonames; 
--- CREATE DATABASE geonames DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
--- USE geonames;
-
 -- Create syntax for TABLE 'admin1CodesAscii'
 CREATE TABLE `admin1CodesAscii` (
   `code` char(15) DEFAULT NULL,
