@@ -10,9 +10,15 @@ dbname="geonames"
 download_folder="`pwd`"
 
 logo() {
-	echo "================================================================================================"
-	echo "                       G E O N A M E S    D A T A    I M P O R T E R    V 2.0                   "
-	echo "================================================================================================"
+echo " __________________________________________________________________________________________________________________ "
+echo "   _____                                              _____        _          _____                            _    "
+echo "  / ____|                                            |  __ \      | |        |_   _|                          | |   "
+echo " | |  __  ___  ___  _ __   __ _ _ __ ___   ___  ___  | |  | | __ _| |_ __ _    | |  _ __ ___  _ __   ___  _ __| |_  "
+echo " | | |_ |/ _ \/ _ \| '_ \ / _` | '_ ` _ \ / _ \/ __| | |  | |/ _` | __/ _` |   | | | '_ ` _ \| '_ \ / _ \| '__| __| "
+echo " | |__| |  __/ (_) | | | | (_| | | | | | |  __/\__ \ | |__| | (_| | || (_| |  _| |_| | | | | | |_) | (_) | |  | |_  "
+echo "  \_____|\___|\___/|_| |_|\__,_|_| |_| |_|\___||___/ |_____/ \__,_|\__\__,_| |_____|_| |_| |_| .__/ \___/|_|   \__| "
+echo "                                                                                             |_|                    "
+echo " __________________________________________________________________________________________________________________ "
 }
 
 usage() {
@@ -98,6 +104,7 @@ case $action in
             fi
             download_folder="`pwd`/$2"
         fi
+        # Dumps general Data
         dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
         for dump in $dumps; do
             wget -c -P "$download_folder" http://download.geonames.org/export/dump/$dump
@@ -106,6 +113,7 @@ case $action in
                 unzip "$download_folder/$dump" -d "`pwd`"
             fi
         done
+        # TODO: Dumps Postal Code Data.
         exit 0
     ;;
 esac
@@ -137,11 +145,11 @@ case "$action" in
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
     ;;
         
-    # create-tables)
-    #     echo "Creating tables for database $dbname..."
-    #     mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
-    #     mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
-    # ;;
+    create-tables)
+        echo "Creating tables for database $dbname..."
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < $dir/geonames_db_struct.sql
+    ;;
     
     import-dumps)
         echo "Importing geonames dumps into database $dbname"
