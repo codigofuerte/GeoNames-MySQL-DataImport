@@ -100,7 +100,7 @@ CREATE TABLE `geoname` (
   `fclass` char(1) DEFAULT NULL,
   `fcode` varchar(10) DEFAULT NULL,
   `country` varchar(2) DEFAULT NULL,
-  `cc2` varchar(60) DEFAULT NULL,
+  `cc2` varchar(200) DEFAULT NULL,
   `admin1` varchar(20) DEFAULT NULL,
   `admin2` varchar(80) DEFAULT NULL,
   `admin3` varchar(20) DEFAULT NULL,

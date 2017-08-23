@@ -4,7 +4,7 @@
 dbhost="localhost"
 dbport=3306
 dbname="geonames"
-#dir=$( cd "$( dirname "$0" )" && pwd )
+dir=$( cd "$( dirname "$0" )" && pwd )
 
 download_folder="`pwd`/download"
 
@@ -44,16 +44,23 @@ download_geonames_data() {
     download_folder="$1"
     dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
     zip_codes="allCountries.zip"
+    (
+    cd "$download_folder"
     for dump in $dumps; do
-        wget -c -P "$download_folder" http://download.geonames.org/export/dump/$dump
+        wget -c http://download.geonames.org/export/dump/$dump
     done
+    (
+    mkdir -p ./zipcodes
+    cd ./zipcodes
     for zip in $zip_codes; do
-        wget -c -P "$download_folder" -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
+	    wget -c -P ./zipcodes http://download.geonames.org/export/zipcodes/$zip
     done
-    unzip "*_zip.zip" -d ./zip
-    rm *_zip.zip
-    unzip "*.zip"
-    rm *.zip
+    unzip -o "*.zip"
+    )
+    unzip -o "*.zip"
+    
+    cp $(dirname $0)/continentCodes.txt ./
+    )
 }
 
 if [ $# -lt 1 ]; then
@@ -66,14 +73,12 @@ logo
 # Deals operation mode 1 (Download data bundles from geonames.org)
 if { [ "$1" == "--download-data" ]; } then
 	if { [ "$2" != "" ]; } then
-		if [ ! -d "$2" ]; then
-			echo "Folder '$2' doesn't exists. Run mkdir..."
-			mkdir "$2"
-		fi
+		mkdir -p "$2"
 		download_folder="$2"
 	fi
 	echo "download_folder=$download_folder"
 	download_geonames_data "$download_folder"
+	exit 0
 fi
 
 # Deals with operation mode 2 (Database issues...)
@@ -132,8 +137,9 @@ case "$action" in
     ;;
     
     import-dumps)
-        echo "Importing geonames dumps into database $dbname"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 $dbname < $dir/geonames_import_data.sql
+        echo "Importing geonames dumps from $download_folder into database $dbname"
+	cd $download_folder
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword --local-infile=1 --skip-column-names $dbname < $dir/geonames_import_data.sql
     ;;    
     
     drop-db)
