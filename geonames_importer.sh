@@ -208,7 +208,7 @@ case "$action" in
     create-db)
         echo "Creating database $dbname..."
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "DROP DATABASE IF EXISTS $dbname;"
-        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8;" 
+        mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "CREATE DATABASE $dbname DEFAULT CHARACTER SET utf8mb4;" 
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword -Bse "USE $dbname;" 
         mysql -h $dbhost -P $dbport -u $dbusername -p$dbpassword $dbname < "$working_dir/geonames_db_struct.sql"
     ;;
