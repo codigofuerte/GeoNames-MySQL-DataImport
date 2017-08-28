@@ -11,4 +11,4 @@ Where "action" can be:
 - **drop-db** Removes the db completely.
 - **truncate-db** Removes geonames data from db.
     
-Please, visit the <a href="http://codigofuerte.github.com/GeoNames-MySQL-DataImport" target="_blank">project's web site</a> for a more detailed information.
+The <a href="http://codigofuerte.github.com/GeoNames-MySQL-DataImport" target="_blank">reference site</a> is still under construction for this new version. Stay tuned to this site.
