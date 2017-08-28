@@ -75,9 +75,24 @@
         <p>As for this new version of Geonames MySQL Data Importer several configuration parameters has been included at the begining of the script.</p>
         <p>You can chage this at your own convenience to match your environment.</p>
         <p>The parameters included are:</p>
-        <code>
-        
-        </code>
+        <pre>
+            # Default values for database variables.
+            dbhost="localhost"
+            dbport=3306
+            dbname="geonames"
+            dbusername="root"
+            dbpassword="root"
+
+            # Default value for download folder
+            download_folder="$working_dir/download"
+
+            # Default general dumps to download
+            dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
+
+            # Postal Code information.
+            # You can specify a set of the files located at http://download.geonames.org/export/zip/
+            postal_codes="allCountries.zip"        
+        </pre>
         <h2>Operation Modes</h2>
         <p>The original philosophy of the project has not been changed in this new version. So, two operation modes are provided. These are:</p>
 	     <ul>
