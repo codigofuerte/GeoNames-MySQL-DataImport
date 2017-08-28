@@ -60,9 +60,12 @@
         <h1>Downloading last geonames.org dumps</h1>
         <p>In order to get the latest dumps from geonames.org you can invoke the script in this way.</p>
         
-        <pre><code>geonames_importer.sh -a download-data</code></pre>
+        <pre><code>geonames_importer.sh -a download-data [optional_download_dir]</code></pre>
         
-        The result files should be:        
+        <p>By default, the application will download the data from geonames in a subdirectory of the current path called "download".</p>
+        <p>You can specify an alternate folder just in case you need to.</p>
+        
+        The downloaded files in both cases should be:        
         <ul>
             <li>admin1CodesASCII.txt</li>
             <li>allCountries.txt</li>
@@ -74,6 +77,7 @@
         </ul>
         
         <p>In addition to these files there is another one called <strong>continentCodes.txt</strong>. This file is not included as a downlodable file by geonames.org and is provided as part of this git repository.</p>
+        <p>The script will unzip the original files downloaded from geonames in a folder called "data". This folder will contain all the data needed for the "import-dump" action.</p>
     </section>
     
     <footer>
