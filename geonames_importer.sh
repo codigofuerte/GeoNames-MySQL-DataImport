@@ -57,12 +57,6 @@ usage() {
 	echo "    drop-db: Removes the db completely."
     echo "    truncate-db: Removes geonames data from db."
     echo
-    # echo " The rest of parameters indicates the following information:"
-	# echo "    -u <user>     User name to access database server."
-	# echo "    -p <password> User password to access database server."
-	# echo "    -h <host>     Data Base Server address (default: localhost)."
-	# echo "    -r <port>     Data Base Server Port (default: 3306)"
-	# echo "    -n <dbname>  Data Base Name for the geonames.org data (default: geonames)"
     exit -1
 }
 
@@ -76,23 +70,6 @@ dump_db_params() {
     echo "DB Name: " $dbname
 }
 
-# download_geonames_data() {
-# 	echo "Downloading GeoNames.org data..." 
-#     download_folder="$1"
-#     dumps="allCountries.zip alternateNames.zip hierarchy.zip admin1CodesASCII.txt admin2Codes.txt featureCodes_en.txt timeZones.txt countryInfo.txt"
-#     zip_codes="allCountries.zip"
-#     for dump in $dumps; do
-#         wget -c -P "$download_folder" http://download.geonames.org/export/dump/$dump
-#     done
-#     for zip in $zip_codes; do
-#         wget -c -P "$download_folder" -O "${zip:0:(-4)}_zip.zip" http://download.geonames.org/export/zip/$zip
-#     done
-#     unzip "*_zip.zip" -d ./zip
-#     rm *_zip.zip
-#     unzip "*.zip"
-#     rm *.zip
-# }
-
 if [ $# -lt 1 ]; then
 	usage
 	exit 1
@@ -102,19 +79,6 @@ logo
 echo "Current working folder: $working_dir"
 echo "Current data folder: $data_dir"
 echo "Default download folder: $download_folder"
-
-# Deals operation mode 1 (Download data bundles from geonames.org)
-#if { [ "$1" == "--download-data" ]; } then
-#	if { [ "$2" != "" ]; } then
-#		if [ ! -d "$2" ]; then
-#			echo "Folder '$2' doesn't exists. Run mkdir..."
-#			mkdir "$2"
-#		fi
-#		download_folder="$2"
-#	fi
-#	echo "download_folder=$download_folder"
-#	download_geonames_data "$download_folder"
-#fi
 
 # Deals with operation mode 2 (Database issues...)
 # Parses command line parameters.
@@ -193,16 +157,6 @@ case $action in
         exit 0
     ;;
 esac
-
-# if [ -z $dbusername ]; then
-#     echo "No user name provided for accessing the database. Please write some value in parameter -u..."
-#     exit 1
-# fi
-
-# if [ -z $dbpassword ]; then
-#     echo "No user password provided for accessing the database. Please write some value in parameter -p..."
-#     exit 1
-# fi
 
 case "$action" in
     create-db)
