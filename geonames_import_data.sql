@@ -46,7 +46,7 @@ LOAD DATA LOCAL INFILE 'data/timeZones.txt'
 INTO TABLE timeZones
 CHARACTER SET 'utf8mb4'
 IGNORE 1 LINES
-(timeZoneId, GMT_offset, DST_offset);
+(country, timeZoneId, GMT_offset, DST_offset, raw_offset);
 
 SELECT '########## Loading countryInfo.txt... ##########';
 LOAD DATA LOCAL INFILE 'data/countryInfo.txt'

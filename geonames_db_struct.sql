@@ -140,9 +140,13 @@ CREATE TABLE `iso_languagecodes` (
 
 -- Create syntax for TABLE 'timeZones'
 CREATE TABLE `timeZones` (
-  `timeZoneId` varchar(200) DEFAULT NULL,
+  `country` varchar(2) DEFAULT NULL,
+  `timeZoneId` varchar(200) NOT NULL,
   `GMT_offset` decimal(3,1) DEFAULT NULL,
-  `DST_offset` decimal(3,1) DEFAULT NULL
+  `DST_offset` decimal(3,1) DEFAULT NULL,
+  `raw_offset` decimal(3,1) DEFAULT NULL,
+  PRIMARY KEY (`timeZoneId`),
+  KEY `country` (`country`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- Create syntax for TABLE 'postalCodes'
