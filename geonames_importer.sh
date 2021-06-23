@@ -107,7 +107,7 @@ case $action in
             fi
             # Changes the default download folder to the one specified by the user.
             download_folder="$working_dir/$3"
-            echo "Changed defuault download folder to $download_folder"
+            echo "Changed default download folder to $download_folder"
         else
             # Creates default download folder
             if [ ! -d "$download_folder" ]; then
