@@ -1,4 +1,4 @@
-### V 2.0 Shell Script for importing geonames.org data dumps into a MySQL database.
+# V 2.0 Shell Script for importing geonames.org data dumps into a MySQL database.
 
 Usage: geonames_importer.sh -a "action"
 
@@ -12,3 +12,6 @@ Where "action" can be:
 - **truncate-db** Removes geonames data from db.
     
 The <a href="http://codigofuerte.github.com/GeoNames-MySQL-DataImport" target="_blank">reference site</a> is still under construction for this new version. Stay tuned to this site.
+
+## License
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
